@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Redirecionando...</title>
-   
 
     <script type="text/javascript">
     // Obtém o URL atual
@@ -11,14 +10,14 @@
     // Extrai o packageId da URL
     var packageId = url.split("/").pop(); // Pega a parte final da URL
 
-    // Tenta abrir o app com o packageId extraído
-    window.location = "intent://#Intent;scheme=https;package=" + packageId + ";end";
+    // Tenta abrir o app com o packageId extraído, usando o intent correto
+    window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
 
-    // Se o app não estiver instalado, redireciona para a Play Store com o packageId
+    // Como precaução, se o redirecionamento falhar, redireciona manualmente para a Play Store
     setTimeout(function () {
         window.location = "https://play.google.com/store/apps/details?id=" + packageId;
     }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
-</script>
+    </script>
 </head>
 <body>
     <p>Redirecionando...</p>
