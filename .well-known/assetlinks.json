@@ -1,11 +1,9 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "br.com.hst.testespaulo",
-      "sha256_cert_fingerprints": [
-        "45:1B:AF:7B:07:56:39:D4:CB:F8:99:CE:DA:20:E2:1E:1B:11:89:54:D2:5C:3B:56:2C:3D:33:02:C7:74:F1:66"
-      ]
-    }
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "br.com.hst.testespaulo",
+    "sha256_cert_fingerprints":
+    ["45:1B:AF:7B:07:56:39:D4:CB:F8:99:CE:DA:20:E2:1E:1B:11:89:54:D2:5C:3B:56:2C:3D:33:02:C7:74:F1:66"]
   }
+}]
