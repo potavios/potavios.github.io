@@ -9,13 +9,16 @@
 
     // Extrai o packageId da URL
     var packageId = url.split("/").pop(); // Pega a parte final da URL
+        console.log(packageId)
 
     // Tenta abrir o app com o packageId extraído
     window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
+        console.log(packageId)
 
     // Redireciona manualmente para a Play Store após um curto período
     setTimeout(function () {
         window.location = "https://play.google.com/store/apps/details?id=" + packageId;
+        console.log(packageId)
     }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
     </script>
 </head>
