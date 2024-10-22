@@ -1,17 +1,18 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+<head>
+    <title>Redirecionando...</title>
+    <script type="text/javascript">
+        // Tenta abrir o aplicativo com o esquema de App Link
+        window.location = "intent://wallet#Intent;scheme=https;package=br.com.hst.testespaulo;end";
+
+        // Se o app não estiver instalado, após um tempo redireciona para a Play Store
+        setTimeout(function () {
+            window.location = "https://play.google.com/store/apps/details?id=gt.com.hst.testespaulo";
+        }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
+    </script>
+</head>
 <body>
-
-<h1>Test Deep Link</h1>
-<p>Deep Link Paulo</p>
-
-<p>
-   <a href="https://www.potavios.github.io/my_wallet">https://www.potavios.github.io/my_wallet</a> 
-</p>
-
-  <p>
-   <a href="http://www.potavios.github.io/my_wallet">http://www.potavios.github.io/my_wallet</a> 
-</p>
-
+    <p>Redirecionando...</p>
 </body>
-</html> 
+</html>
