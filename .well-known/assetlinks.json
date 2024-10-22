@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "br.com.hst.testespaulo",
+    "package_name": "gt.com.bi.bipay",
     "sha256_cert_fingerprints":
-    ["45:1B:AF:7B:07:56:39:D4:CB:F8:99:CE:DA:20:E2:1E:1B:11:89:54:D2:5C:3B:56:2C:3D:33:02:C7:74:F1:66"]
+    ["95:0A:87:A3:09:7A:93:D0:C0:77:E2:95:19:5B:31:3B:6C:EC:9D:EA:34:DE:D6:E3:8E:88:34:63:11:93:FF:57"]
   }
 }]
