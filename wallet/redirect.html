@@ -3,12 +3,18 @@
 <head>
     <title>Redirecionando...</title>
     <script type="text/javascript">
-        // Tenta abrir o aplicativo com o esquema de App Link
-        window.location = "intent://wallet#Intent;scheme=https;package=br.com.hst.testespaulo;end";
+        // Obtém o URL atual
+        var url = window.location.href;
 
-        // Se o app não estiver instalado, após um tempo redireciona para a Play Store
+        // Extrai o packageId da URL
+        var packageId = url.split("/").pop(); // Pega a parte final da URL
+
+        // Tenta abrir o app com o packageId extraído
+        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";end";
+
+        // Se o app não estiver instalado, redireciona para a Play Store com o packageId
         setTimeout(function () {
-            window.location = "https://play.google.com/store/apps/details?id=gt.com.hst.testespaulo";
+            window.location = "https://play.google.com/store/apps/details?id=" + packageId;
         }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
     </script>
 </head>
