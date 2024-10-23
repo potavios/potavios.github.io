@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecionando...</title>
+    <title>Redirecting to wallet...</title>
 
     <script type="text/javascript">
     // Função para obter parâmetros da URL
@@ -10,25 +10,30 @@
         return urlParams.get(name);
     }
 
+    // Função para verificar se o navegador suporta intents
+    function openAppOrStore(packageId) {
+        const start = Date.now();
+        // Tenta abrir o app com o intent
+        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
+
+        // Aguarda um tempo para redirecionar para a Play Store caso o app não abra
+        setTimeout(function () {
+            const elapsed = Date.now() - start;
+
+            // Se o tempo decorrido for menor que um limite (significa que o app não foi aberto)
+            if (elapsed < 2000) {
+                window.location = "https://play.google.com/store/apps/details?id=" + packageId;
+            }
+        }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
+    }
+
     // Obtém o packageId da URL
     var packageId = getParameterByName('packageId'); // Pega o valor do parâmetro 'packageId'
 
     // Verifica se o packageId foi encontrado
     if (packageId) {
-        // Verifica se estamos no mobile antes de tentar redirecionar
-        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        if (isMobile) {
-            // Tenta abrir o app com o packageId extraído, usando o intent correto
-            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
-        } else {
-            // Se não for mobile, redireciona diretamente para a Play Store
-            window.location = "https://play.google.com/store/apps/details?id=" + packageId;
-        }
-
-        // Como precaução, se o redirecionamento falhar, redireciona manualmente para a Play Store
-        setTimeout(function () {
-            window.location = "https://play.google.com/store/apps/details?id=" + packageId;
-        }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
+        // Tenta abrir o app ou redirecionar para a Play Store
+        openAppOrStore(packageId);
     } else {
         // Caso o packageId não seja encontrado
         document.body.innerHTML = "<p>Package ID não encontrado na URL.</p>";
