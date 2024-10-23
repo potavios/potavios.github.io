@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Atualizado 18:00</title>
@@ -42,3 +42,60 @@
     </body>
 
 </html>
+ -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecionando...</title>
+    
+    <script type="text/javascript">
+        function getParameterFromUrlByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        var packageId = getParameterFromUrlByName('packageId'); 
+        
+        // Verifica se o packageId foi encontrado
+        if (packageId) {
+            var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId + "&source=redirect";
+
+            // Função para redirecionar para a Play Store se o app não estiver instalado
+            function redirectToPlayStore() {
+                window.location = playStoreUrl;
+            }
+
+            // Tenta abrir o app com o packageId extraído
+            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+            
+            // Verifica se a página está visível (app não foi aberto)
+            document.addEventListener("visibilitychange", function() {
+                if (!document.hidden) {
+                    // Página continua visível, então o app não foi aberto, redireciona para a Play Store
+                    setTimeout(redirectToPlayStore, 1500); 
+                }
+            });
+
+            // Redireciona para a Play Store se o app não abrir em 1.5 segundos
+            setTimeout(function () {
+                if (!document.hidden) {
+                    redirectToPlayStore();
+                }
+            }, 1500);  // Aguarda 1.5 segundos antes de redirecionar para a Play Store
+        } else {
+            // Caso o packageId não seja encontrado
+            document.body.innerHTML = "<p>Package ID não encontrado na URL.</p>";
+        }
+    
+    </script>
+
+</head>
+    
+    <body>
+        <p>Redirecionando...</p>
+    </body>
+
+</html>
+
