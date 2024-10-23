@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Atualizado 11:08</title>
+    <title>Atualizado 11:15</title>
     <script type="text/javascript">
     // Função para obter parâmetros da URL
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
-    }
-
-    // Gera um valor randômico para evitar cache
-    function generateCacheBuster() {
-        return "?cb=" + new Date().getTime(); // Usa o timestamp para criar um valor único
     }
 
     // Obtém o packageId da URL
@@ -20,8 +15,7 @@
     // Verifica se o packageId foi encontrado
     if (packageId) {
         // Tenta abrir o app com o packageId extraído, adicionando cache buster
-        var cacheBuster = generateCacheBuster();
-        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + cacheBuster + ";end";
+        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
 
         // Se o app não estiver instalado, redireciona para a Play Store com cache buster
         setTimeout(function () {
