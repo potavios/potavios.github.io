@@ -17,10 +17,13 @@
         // Verifica se o packageId foi encontrado
         if (packageId) {
 
-            var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId;
+            var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId + "&source=redirect"
             
             // Tenta abrir o app com o packageId extraído, sem alterar o deep link
             window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+
+
+
 
             // Se o app não estiver instalado, redireciona para a Play Store com cache buster
             setTimeout(function () {
