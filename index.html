@@ -2,22 +2,28 @@
 <html>
 <head>
     <title>Redirecting to wallet...</title>
+     debugger;
 
     <script type="text/javascript">
     // Função para obter parâmetros da URL
+        debugger;
     function getParameterByName(name) {
+         debugger;
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
 
     // Função para verificar se o navegador suporta intents
+         debugger;
     function openAppOrStore(packageId) {
+         debugger;
         const start = Date.now();
         // Tenta abrir o app com o intent
         window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
 
         // Aguarda um tempo para redirecionar para a Play Store caso o app não abra
         setTimeout(function () {
+             debugger;
             const elapsed = Date.now() - start;
 
             // Se o tempo decorrido for menor que um limite (significa que o app não foi aberto)
@@ -28,9 +34,11 @@
     }
 
     // Obtém o packageId da URL
+         debugger;
     var packageId = getParameterByName('packageId'); // Pega o valor do parâmetro 'packageId'
 
     // Verifica se o packageId foi encontrado
+         debugger;
     if (packageId) {
         // Tenta abrir o app ou redirecionar para a Play Store
         openAppOrStore(packageId);
