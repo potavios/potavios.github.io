@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualizado 13:00</title>
+    
+    <script type="text/javascript">
+        function getParameterFromUrlByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        
+        var packageId = getParameterFromUrlByName('packageId'); 
+        
+        // Verifica se o packageId foi encontrado
+        if (packageId) {
+            var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId + "&source=redirect"
+            
+            // Tenta abrir o app com o packageId extraído, sem alterar o deep link
+            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+
+
+            // Se o app não estiver instalado, redireciona para a Play Store com cache buster
+            setTimeout(function () {
+                
+                // Força a recarga da URL da Play Store para o novo packageId
+                window.location = playStoreUrl;
+            }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
+        } else {
+            // Caso o packageId não seja encontrado
+            document.body.innerHTML = "<p>Package ID não encontrado na URL.</p>";
+        }
+    
+    </script>
+
+</head>
+    
+    <body>
+        <p>Redirecting...</p>
+    </body>
+
+</html>
