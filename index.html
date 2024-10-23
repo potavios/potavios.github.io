@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecionando...</title>
+    <title>Atualizado 11:08</title>
     <script type="text/javascript">
     // Função para obter parâmetros da URL
     function getParameterByName(name) {
@@ -28,4 +28,12 @@
             window.location = "https://play.google.com/store/apps/details?id=" + packageId + cacheBuster;
         }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
     } else {
-        
+        // Caso o packageId não seja encontrado
+        document.body.innerHTML = "<p>Package ID não encontrado na URL.</p>";
+    }
+    </script>
+</head>
+<body>
+    <p>Redirecionando...</p>
+</body>
+</html>
