@@ -1,54 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting to wallet...</title>
-     debugger;
-
+    <title>Redirecionando...</title>
     <script type="text/javascript">
     // Função para obter parâmetros da URL
-        debugger;
     function getParameterByName(name) {
-         debugger;
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
 
-    // Função para verificar se o navegador suporta intents
-         debugger;
-    function openAppOrStore(packageId) {
-         debugger;
-        const start = Date.now();
-        // Tenta abrir o app com o intent
-        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + ";end";
-
-        // Aguarda um tempo para redirecionar para a Play Store caso o app não abra
-        setTimeout(function () {
-             debugger;
-            const elapsed = Date.now() - start;
-
-            // Se o tempo decorrido for menor que um limite (significa que o app não foi aberto)
-            if (elapsed < 540000) {
-                window.location = "https://play.google.com/store/apps/details?id=" + packageId;
-            }
-        }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
+    // Gera um valor randômico para evitar cache
+    function generateCacheBuster() {
+        return "?cb=" + new Date().getTime(); // Usa o timestamp para criar um valor único
     }
 
     // Obtém o packageId da URL
-         debugger;
     var packageId = getParameterByName('packageId'); // Pega o valor do parâmetro 'packageId'
 
     // Verifica se o packageId foi encontrado
-         debugger;
     if (packageId) {
-        // Tenta abrir o app ou redirecionar para a Play Store
-        openAppOrStore(packageId);
+        // Tenta abrir o app com o packageId extraído, adicionando cache buster
+        var cacheBuster = generateCacheBuster();
+        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=https://play.google.com/store/apps/details?id=" + packageId + cacheBuster + ";end";
+
+        // Se o app não estiver instalado, redireciona para a Play Store com cache buster
+        setTimeout(function () {
+            window.location = "https://play.google.com/store/apps/details?id=" + packageId + cacheBuster;
+        }, 1500);  // Aguarda 1.5 segundos antes de redirecionar
     } else {
-        // Caso o packageId não seja encontrado
-        document.body.innerHTML = "<p>Package ID não encontrado na URL.</p>";
-    }
-    </script>
-</head>
-<body>
-    <p>Redirecionando...</p>
-</body>
-</html>
+        
