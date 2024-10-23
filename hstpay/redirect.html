@@ -68,7 +68,9 @@
             }
 
             // Tenta abrir o app com o packageId extraído
-            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+           // window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";end";
+
             
             // Verifica se a página está visível (app não foi aberto)
             document.addEventListener("visibilitychange", function() {
