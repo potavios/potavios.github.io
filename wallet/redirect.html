@@ -2,28 +2,26 @@
 <html>
 <head>
     <title>Redirecionando...</title>
-    
     <script type="text/javascript">
-        // Obtém o URL atual
-        var url = window.location.href;
+        function openAppOrStore() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const packageId = urlParams.get('packageId');
+            const playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId;
 
-        // Extrai o packageId da URL (última parte da URL)
-        var packageId = url.split("/").pop(); 
+            // Verifica se o app está instalado e tenta abrir
+            window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";
+            console.log("intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + playStoreUrl + ";end";)
 
-        // Define o link da Play Store para fallback
-        var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageId;
-
-        // Tenta abrir o app com o packageId extraído usando o intent scheme
-        window.location = "intent://#Intent;scheme=https;package=" + packageId + ";S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) + ";end";
-
-        // Caso o app não esteja instalado, redireciona para a Play Store após 1.5 segundos
-        setTimeout(function () {
-            window.location = playStoreUrl;
-        }, 1500);  
-        
+            // Se o app não estiver instalado, redireciona para a Play Store após 1.5 segundos
+            setTimeout(() => {
+                if (!document.hidden) { // Se a página ainda estiver visível, o app não foi aberto
+                    window.location = playStoreUrl;
+                }
+            }, 1500);
+        }
     </script>
 </head>
-<body>
+<body onload="openAppOrStore()">
     <p>Redirecionando...</p>
 </body>
 </html>
