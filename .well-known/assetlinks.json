@@ -1,5 +1,14 @@
 [
   {
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "cr.fi.bncr.wallet",
+    "sha256_cert_fingerprints":
+    ["31:5B:D9:CE:C7:65:7C:C3:BC:13:36:5F:B1:B9:0A:0B:BC:CA:3C:11:23:89:4A:1E:C9:FC:B8:CD:7F:F5:BC:1E"]
+  }
+},
+  {
     "relation": [
       "delegate_permission/common.handle_all_urls"
     ],
@@ -36,5 +45,8 @@
     }
   }
 ]
+
+
+
 
 
