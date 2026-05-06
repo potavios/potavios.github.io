@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Teste de Recebimento SDK</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
-        #json-display { background: #f4f4f4; border: 1px solid #ccc; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
-    </style>
-</head>
+<html>
 <body>
-    <h2>Dados Recebidos via POST:</h2>
-    <div id="json-display">Aguardando dados...</div>
+    <h1>Teste de Deep Link</h1>
+    
+    <!-- Link simples -->
+    <a href="issuer-app://action?id=12345&ref=some&token=eyJhb">
+       Call my simulator app (Link)
+    </a>
 
-    <script>
-        // Quando a página carrega, verificamos se há dados de formulário
-        window.onload = function() {
-            const display = document.getElementById('json-display');
-            
-            // Em um POST de formulário padrão, os dados vêm no corpo.
-            // Para capturar o "POST puro" em páginas estáticas, 
-            // a melhor forma é via JavaScript se o SDK enviar como parâmetro
-            // ou usando o objeto Request se estiver usando Service Workers.
-            
-            // Se o seu SDK envia via postUrl, o navegador tenta processar.
-            // Para exibição simples em páginas estáticas, pegamos via URLSearchParams:
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('json_data')) {
-                display.innerText = urlParams.get('json_data');
-            } else {
-                display.innerText = "Nenhum dado 'json_data' encontrado no POST/URL.";
-            }
-        };
-    </script>
+    <br><br>
+
+    <!-- Botão via JavaScript -->
+    <button onclick="window.location.href='issuer-app://action?id=12345&ref=some&token=eyJhb'">
+        Abrir Meu App (Botão)
+    </button>
 </body>
 </html>
