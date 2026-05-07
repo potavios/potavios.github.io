@@ -1,18 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Teste de Deep Link</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        /* Estilizando o Link e o Botão para parecerem iguais e grandes */
+        .btn-deep-link {
+            display: block;
+            width: 80%; /* Ocupa 80% da largura da tela */
+            max-width: 300px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            background-color: #FF5722; /* Laranja que você está usando no App */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        /* Efeito de clique */
+        .btn-deep-link:active {
+            transform: scale(0.95);
+            background-color: #E64A19;
+        }
+
+        .secondary {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
 <body>
+
     <h1>Teste de Deep Link</h1>
     
-    <!-- Link simples -->
-    <a href="issuer-app://action?id=12345&ref=some&token=eyJhb">
-       Call my simulator app (Link)
+    <a href="issuer-app://action?id=12345&ref=some&token=eyJhb" class="btn-deep-link">
+        Abrir App (Link Direto)
     </a>
 
-    <br><br>
-
-    <!-- Botão via JavaScript -->
-    <button onclick="window.location.href='issuer-app://action?id=12345&ref=some&token=eyJhb'">
-        Abrir Meu App (Botão)
+    <button class="btn-deep-link secondary" 
+            onclick="window.location.href='issuer-app://action?id=12345&ref=some&token=eyJhb'">
+        Abrir App (JavaScript)
     </button>
+
 </body>
 </html>
